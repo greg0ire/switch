@@ -1,4 +1,4 @@
-function cc()
+function CC()
 {
   cdproj
   ./symfony cc
