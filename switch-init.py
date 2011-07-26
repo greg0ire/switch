@@ -13,3 +13,7 @@ parser.add_argument('--project-dir', nargs=1, default=os.getcwd(),
                     help='the directory where the project is store (defaults to .)')
 
 args = parser.parse_args()
+
+switchProjectPath = os.path.expanduser(os.path.join('~', '.switch', args.project_name))
+if not os.path.exists(switchProjectPath):
+  os.makedirs(switchProjectPath)
