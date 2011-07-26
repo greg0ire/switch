@@ -17,3 +17,10 @@ args = parser.parse_args()
 switchProjectPath = os.path.expanduser(os.path.join('~', '.switch', args.project_name))
 if not os.path.exists(switchProjectPath):
   os.makedirs(switchProjectPath)
+
+
+from Cheetah.Template import Template
+for filename in ('in', 'out'):
+  tpl = Template(file=os.path.join('core', filename + '.tmpl'))
+  tpl.projectDirectory = args.project_dir
+  open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
