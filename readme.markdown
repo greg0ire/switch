@@ -8,6 +8,11 @@
 **switch-init** project [ --type=symfony ]
 **switch** project
 
+# Requirements
+python 2.7
+python-Cheetah
+zsh
+
 # How does it work?
 ## switch-init
 *switch-init* is a python script that uses [Cheetah templates](http://www.cheetahtemplate.org) to generate shell snippets.
