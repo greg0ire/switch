@@ -1,16 +1,19 @@
-# Fonctionnalités
-+ creation d'alias generiques
-+ creation d'alias suivant le type de projet
-+ intégration avec les activités KDE
+# Planned features
++ generic aliases/function creation
++ per-project *type* aliases/functions creation
++ integration with KDE activities 
 
 # Usage
 
 **switch-init** project [ --type=symfony ]
 **switch** project
 
-# Principe de fonctionnement
+# How does it work?
 ## switch-init
-switch-init est un script python qui va générer un bout de code shell enrichissant le shell en fonction du projet.
+*switch-init* is a python script that uses [Cheetah templates](http://www.cheetahtemplate.org) to generate shell snippets.
 
 ## switch
-switch est une fonction shell qui va appeler le bout de code précédemment généré.
+switch is a z-shell function that calls previously generated shell snippets
+
+## shell-snippets
+They are stored in `~/.switch/<project_name>/`. `in.sh` is used when switching *to* the project, whereas `out.sh` is used when switching *from* the project
