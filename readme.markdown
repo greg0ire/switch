@@ -4,9 +4,15 @@
 + integration with KDE activities 
 
 # Usage
-
+## switch-init
 **switch-init** project [ --type=symfony ]
-**switch** project
+
+This will create the shell snippets
+
+## switch
+**switch** [project]
+
+With no arguments, unselects the current project if there is one. With one argument, does the same and switches to the specified project.
 
 # Requirements
 python 2.7
