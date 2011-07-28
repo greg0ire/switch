@@ -29,3 +29,11 @@ function switch()
   ;;
   esac
 }
+#restore current project on startup
+if [ -f ~/.switch/proj.save ]
+then
+     switch `cat ~/.switch/proj.save`
+fi
+
+#and go to it
+cdproj
