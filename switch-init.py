@@ -18,9 +18,7 @@ switchProjectPath = os.path.expanduser(os.path.join('~', '.switch', args.project
 if not os.path.exists(switchProjectPath):
   os.makedirs(switchProjectPath)
 
-
-from Cheetah.Template import Template
+from core import CoreSnippet
 for filename in ('in', 'out'):
-  tpl = Template(file=os.path.join(os.path.dirname(__file__), 'core', filename + '.tmpl'))
-  tpl.projectDirectory = args.project_dir
+  tpl = CoreSnippet(filename, args.project_dir)
   open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
