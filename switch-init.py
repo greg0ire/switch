@@ -21,6 +21,6 @@ if not os.path.exists(switchProjectPath):
 
 from Cheetah.Template import Template
 for filename in ('in', 'out'):
-  tpl = Template(file=os.path.join('core', filename + '.tmpl'))
+  tpl = Template(file=os.path.join(os.path.dirname(__file__), 'core', filename + '.tmpl'))
   tpl.projectDirectory = args.project_dir
   open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
