@@ -1,6 +1,6 @@
 # Planned features
 + generic aliases/function creation
-+ per-project *type* aliases/functions creation
++ per-*project type* aliases/functions creation
 + integration with KDE activities 
 
 # Usage
