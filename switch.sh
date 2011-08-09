@@ -9,7 +9,7 @@ function switch()
       source ~/.switch/`cat ~/.switch/proj.save`/out.sh
       rm ~/.switch/proj.save
     else
-      echo "Current project not found"
+      echo "Current project not found">&2
     fi
   ;;
   1 )
@@ -24,7 +24,7 @@ function switch()
     echo "$1" > ~/.switch/proj.save
   ;;
   * )
-    echo "Too many arguments"
+    echo "Too many arguments">&2
     echo $USAGE
   ;;
   esac
