@@ -32,7 +32,9 @@ function switch()
 #restore current project on startup
 if [ -f ~/.switch/proj.save ]
 then
-     switch `cat ~/.switch/proj.save`
+     CURRENT_PROJECT=`cat ~/.switch/proj.save`
+     rm ~/.switch/proj.save #avoid warnings about non existent aliases and functions
+     switch $CURRENT_PROJECT
 fi
 
 #and go to it
