@@ -37,5 +37,3 @@ then
      switch $CURRENT_PROJECT
 fi
 
-#and go to it
-cdproj
