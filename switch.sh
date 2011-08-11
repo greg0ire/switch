@@ -8,6 +8,7 @@ function switch()
       echo "Deselecting current project"
       source ~/.switch/`cat ~/.switch/proj.save`/out.sh
       rm ~/.switch/proj.save
+      cd
     else
       echo "Current project not found">&2
     fi
