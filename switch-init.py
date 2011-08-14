@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description='Initialize a switch project')
 parser.add_argument('--project-name', nargs=1, 
                     default=os.path.basename(os.getcwd()),
                     help='the project name (defaults to the cwd name)')
-parser.add_argument('--type', nargs=1, choices= [os.path.basename(x) for x in glob.glob('types/*')],
+parser.add_argument('--type', nargs=1, choices= [os.path.basename(x) for x in glob.glob('projectTypes/*')],
                     help='the project type')
 
 parser.add_argument('--project-dir', nargs=1, default=os.getcwd(),
