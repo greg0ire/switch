@@ -18,7 +18,16 @@ switchProjectPath = os.path.expanduser(os.path.join('~', '.switch', args.project
 if not os.path.exists(switchProjectPath):
   os.makedirs(switchProjectPath)
 
+#include the core snippet
 from core import CoreSnippet
 for filename in ('in', 'out'):
   tpl = CoreSnippet(filename, args.project_dir)
   open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
+
+#include the type snippet
+if len(args.type) > 0 :
+  snippetClassName = args.type[0].capitalize() + 'Snippet'
+  snippetModule = __import__('projectTypes.' + args.type[0], globals(), locals(), [snippetClassName])
+  for filename in ('in', 'out'):
+    tpl = getattr(snippetModule, snippetClassName)(filename)
+    open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
