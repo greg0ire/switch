@@ -25,7 +25,7 @@ for filename in ('in', 'out'):
   open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
 
 #include the type snippet
-if len(args.type) > 0 :
+if args.type != None and len(args.type) > 0 :
   snippetClassName = args.type[0].capitalize() + 'Snippet'
   snippetModule = __import__('projectTypes.' + args.type[0], globals(), locals(), [snippetClassName])
   for filename in ('in', 'out'):
