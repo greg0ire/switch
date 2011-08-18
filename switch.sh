@@ -20,7 +20,7 @@ function switch()
       source ~/.switch/`cat ~/.switch/proj.save`/out.sh
       rm ~/.switch/proj.save
     fi
-    if [[ -f ~/.switch/$1  ]]
+    if [[ -d ~/.switch/$1  ]]
     then
       echo "Switching to project \"$1\""
       source ~/.switch/$1/in.sh
