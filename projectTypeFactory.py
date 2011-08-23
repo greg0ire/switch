@@ -9,9 +9,10 @@ class ProjectTypeFactory:
     """
     snippetClassName = projectType.capitalize() + 'Snippet'
     snippetModule    = __import__('projectTypes.' + projectType, globals(), locals(), [snippetClassName])
-    tpl              = getattr(snippetModule, snippetClassName)(file = os.path.join(os.path.dirname(__file__),
-'projectTypes',
-projectType,
-direction + '.tmpl'))
+    tpl              = getattr(snippetModule, snippetClassName)(file = os.path.join(
+      os.path.dirname(__file__),
+      'projectTypes',
+      projectType,
+      direction + '.tmpl'))
     tpl.projectDir   = projectDir
     return tpl
