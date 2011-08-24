@@ -1,5 +1,4 @@
 import os
-import Cheetah.Template
 class ProjectTypeFactory:
   """This factory builds project type template classes"""
   @classmethod
