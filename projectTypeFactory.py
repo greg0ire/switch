@@ -13,5 +13,6 @@ class ProjectTypeFactory:
       projectType,
       direction + '.tmpl'))
     tpl.projectDir   = projectDir
-    getattr(tpl, direction.capitalize())()
+    if hasattr(tpl, direction.capitalize()):
+      getattr(tpl, direction.capitalize())
     return tpl
