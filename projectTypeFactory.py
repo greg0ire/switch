@@ -1,4 +1,5 @@
 import os
+from Cheetah.Template import Template
 class ProjectTypeFactory:
   """This factory builds project type template classes"""
   @classmethod
@@ -6,9 +7,7 @@ class ProjectTypeFactory:
     """This method finds a template class, initializes it with usual arguments
 
     """
-    snippetClassName = projectType.capitalize() + 'Snippet'
-    snippetModule    = __import__('projectTypes.' + projectType, globals(), locals(), [snippetClassName])
-    tpl              = getattr(snippetModule, snippetClassName)(file = os.path.join(
+    tpl              = Template(file = os.path.join(
       os.path.dirname(__file__),
       'projectTypes',
       projectType,
