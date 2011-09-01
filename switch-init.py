@@ -3,6 +3,7 @@ import argparse
 import glob
 import os
 import sys
+from projectTypeFactory import ProjectTypeFactory
 parser = argparse.ArgumentParser(description='Initialize a switch project')
 parser.add_argument('--project-name', nargs=1, 
                     default=os.path.basename(os.getcwd()),
@@ -30,5 +31,5 @@ if args.type != None and len(args.type) > 0 :
   snippetClassName = args.type[0].capitalize() + 'Snippet'
   snippetModule = __import__('projectTypes.' + args.type[0], globals(), locals(), [snippetClassName])
   for filename in ('in', 'out'):
-    tpl = getattr(snippetModule, snippetClassName)(filename)
+    tpl = ProjectTypeFactory.getInstance(args.type[0], filename, args.project_dir)
     open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
