@@ -12,7 +12,7 @@ parser.add_argument('--type', nargs=1, choices= [os.path.basename(x) for x in gl
                     help='the project type')
 
 parser.add_argument('--project-dir', nargs=1, default=os.getcwd(),
-                    help='the directory where the project is store (defaults to .)')
+                    help='the directory where the project is stored (defaults to .)')
 
 args = parser.parse_args()
 
