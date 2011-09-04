@@ -4,3 +4,5 @@ function CC()
   php app/console cache:clear
   cd -
 }
+export OLDPATH=\$PATH
+export PATH=\$PATH:projectDir/app/
