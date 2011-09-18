@@ -4,7 +4,7 @@ import glob
 import os
 import sys
 from projectTypeFactory import ProjectTypeFactory
-if __name__ =='main':
+if __name__ == '__main__':
   parser = argparse.ArgumentParser(description='Initialize a switch project')
   parser.add_argument('--project-name', nargs=1, 
                       default=[os.path.basename(os.getcwd())],
