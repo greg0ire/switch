@@ -2,3 +2,5 @@ echo "Setting cdproj alias to \"cd $projectDirectory\""
 alias cdproj="cd $projectDirectory"
 echo "Changing to the project directory"
 cdproj
+export OLDHISTFILE=\$HISTFILE
+fc -p $histfilePath

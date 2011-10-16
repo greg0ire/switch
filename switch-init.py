@@ -28,7 +28,7 @@ if __name__ == '__main__':
   #include the core snippet
   from core import CoreSnippet
   for filename in ('in', 'out'):
-    tpl = CoreSnippet(filename, projectDir)
+    tpl = CoreSnippet(filename, projectDir, switchProjectPath)
     open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
 
   #include the type snippet
