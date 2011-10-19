@@ -1,7 +1,14 @@
-# Planned features
+# Features
+## Available
++ `cdproj` alias : go to your project directory
++ per-project history : don't clutter your history with stuff from other projects
++ `$PATH` customization for symfony1/2 : use symfony's console from anywhere
+
+## Planned
 + generic aliases/function creation
 + per-*project type* aliases/functions creation
 + integration with KDE activities 
+
 
 # Usage
 ## switch-init
