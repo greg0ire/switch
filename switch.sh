@@ -36,7 +36,7 @@ function switch()
   esac
 }
 #restore current project on startup
-if [ -f ~/.switch/proj.save ]
+if [[ -f ~/.switch/proj.save && `pwd` == "$HOME" ]]
 then
      CURRENT_PROJECT=`cat ~/.switch/proj.save`
      rm ~/.switch/proj.save #avoid warnings about non existent aliases and functions
