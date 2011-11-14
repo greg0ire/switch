@@ -16,6 +16,9 @@ if __name__ == '__main__':
   parser.add_argument('--project-dir', nargs=1, default=[os.getcwd()],
                       help='the directory where the project is stored (defaults to .)')
 
+  parser.add_argument('-i, --interactive', action='store_true', dest='interactive',
+    help="allows the addition of aliases in an interactive fashion")
+
   args = parser.parse_args()
 
   projectDir  = os.path.abspath(args.project_dir[0])
@@ -37,4 +40,16 @@ if __name__ == '__main__':
     snippetModule = __import__('projectTypes.' + args.type[0], globals(), locals(), [snippetClassName])
     for filename in ('in', 'out'):
       tpl = ProjectTypeFactory.getInstance(args.type[0], filename, projectDir)
+      open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
+
+  #include add interactively defined aliases
+  if args.interactive :
+    from alias import AliasSnippet
+    print "Entering interactive mode..."
+    print "Specify a new alias"
+    key      = raw_input('> ')
+    print "Now specify the alias value"
+    value    = raw_input('> ')
+    for filename in ('in', 'out'):
+      tpl = AliasSnippet(filename, key, value)
       open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
