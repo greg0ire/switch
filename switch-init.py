@@ -46,10 +46,14 @@ if __name__ == '__main__':
   if args.interactive :
     from alias import AliasSnippet
     print "Entering interactive mode..."
-    print "Specify a new alias"
-    key      = raw_input('> ')
-    print "Now specify the alias value"
-    value    = raw_input('> ')
-    for filename in ('in', 'out'):
-      tpl = AliasSnippet(filename, key, value)
-      open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
+    while (True):
+      print "Specify a new alias [Enter to stop creating aliases]"
+      key      = raw_input('> ')
+      if (not key):
+        break
+      print "Now specify the alias value"
+      value    = raw_input('> ')
+      for filename in ('in', 'out'):
+        tpl = AliasSnippet(filename, key, value)
+        open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
+      print """Recorded alias "%s"."""  % key
