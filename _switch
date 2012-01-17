@@ -1,0 +1,9 @@
+#compdef switch
+
+typeset -A opt_args
+local context state line
+
+local switchDir
+switchDir=$HOME/.switch
+
+_arguments "*:files:_files -W switchDir"
