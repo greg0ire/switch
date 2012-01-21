@@ -6,4 +6,4 @@ local context state line
 local switchDir
 switchDir=$HOME/.switch
 
-_arguments "*:files:_files -/ -W switchDir"
+_arguments "*:project:_files -/ -W switchDir"
