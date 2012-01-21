@@ -1,6 +1,6 @@
 function switch()
 {
-  USAGE="switch [project_name]"
+  local usage="switch [project_name]"
   case $# in 
   0 )
     if [[ -f ~/.switch/proj.save  ]]
@@ -31,15 +31,15 @@ function switch()
   ;;
   * )
     echo "Too many arguments">&2
-    echo $USAGE
+    echo $usage
   ;;
   esac
 }
 #restore current project on startup
 if [[ -f ~/.switch/proj.save && `pwd` == "$HOME" ]]
 then
-     CURRENT_PROJECT=`cat ~/.switch/proj.save`
+  local currentProject=`cat ~/.switch/proj.save`
      rm ~/.switch/proj.save #avoid warnings about non existent aliases and functions
-     switch $CURRENT_PROJECT
+     switch $currentProject
 fi
 
