@@ -40,8 +40,9 @@ function switch()
 #restore current project on startup
 if [[ -f ~/.switch/proj.save && `pwd` == "$HOME" ]]
 then
-  local currentProject=`cat ~/.switch/proj.save`
+  currentProject=`cat ~/.switch/proj.save`
      rm ~/.switch/proj.save #avoid warnings about non existent aliases and functions
      switch $currentProject
+  unset currentProject
 fi
 
