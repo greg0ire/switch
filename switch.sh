@@ -3,6 +3,7 @@ function switch()
   local usage="switch [project_name]"
   local switchHome=$HOME/.switch
   local switchSave=$switchHome/proj.save
+  local switchHistory=$switchHome/switch_history
   case $# in 
   0 )
     if [[ -f $switchHome/proj.save  ]]
@@ -10,6 +11,7 @@ function switch()
       echo "Deselecting current project"
       source $switchHome/`cat ~/.switch/proj.save`/out.sh
       rm $switchSave
+      date +%s >> $switchHistory
       cd
     else
       echo "Current project not found">&2
@@ -30,8 +32,10 @@ function switch()
       echo "Switching to project \"$projectName\""
       source $switchHome/$projectName/in.sh
       echo "$projectName" > $switchSave
+      echo `date +%s` $projectName >> $switchHistory
     else
       echo "\"$1\" is not a switch project. Available projects: `ls -x ~/.switch`">&2
+      date +%s >> $switchHistory
     fi
   ;;
   * )
