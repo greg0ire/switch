@@ -16,17 +16,20 @@ function switch()
     fi
   ;;
   1 )
+    # Trim trailing slashes
+    local projectName=`echo "$1" | sed -e "s/\/*$//" `
+
     if [[ -f ~/.switch/proj.save  ]]  
     then
       echo "Deselecting current project"
       source $switchHome/`cat ~/.switch/proj.save`/out.sh
       rm $switchSave
     fi
-    if [[ -d $switchHome/$1  ]]
+    if [[ -d $switchHome/$projectName  ]]
     then
-      echo "Switching to project \"$1\""
-      source $switchHome/$1/in.sh
-      echo "$1" > $switchSave
+      echo "Switching to project \"$projectName\""
+      source $switchHome/$projectName/in.sh
+      echo "$projectName" > $switchSave
     else
       echo "\"$1\" is not a switch project. Available projects: `ls -x ~/.switch`">&2
     fi
