@@ -54,7 +54,7 @@ if __name__ == '__main__':
       'qdbus',
       'org.kde.kactivitymanagerd',
       '/ActivityManager',
-      'org.kde.ActivityManager.CurrentActivity'])
+      'org.kde.ActivityManager.CurrentActivity']).rstrip('\r\n')
 
   #include add interactively defined aliases
   if args.interactive :
