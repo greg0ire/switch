@@ -33,13 +33,13 @@ if __name__ == '__main__':
   if not os.path.exists(switchProjectPath):
     os.makedirs(switchProjectPath)
 
-  #include the core snippet
+  # include the core snippet
   from core import CoreSnippet
   for filename in ('in', 'out'):
     tpl = CoreSnippet(filename, projectDir, switchProjectPath)
     open(os.path.join(switchProjectPath, filename + '.sh'), 'w').write(str(tpl))
 
-  #include the type snippet
+  # include the type snippet
   if args.type != None and len(args.type) > 0 :
     snippetClassName = args.type[0].capitalize() + 'Snippet'
     snippetModule = __import__('projectTypes.' + args.type[0], globals(), locals(), [snippetClassName])
