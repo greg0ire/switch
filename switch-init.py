@@ -19,6 +19,11 @@ if __name__ == '__main__':
   parser.add_argument('-i, --interactive', action='store_true', dest='interactive',
     help="allows the addition of aliases in an interactive fashion")
 
+  if os.environ['DESKTOP_SESSION'] == 'kde-plasma':
+    parser.add_argument('-k --kde-activities', action='store_true', dest='kde-activities',
+      help="whether to associate this project with the current KDE activity")
+
+
   args = parser.parse_args()
 
   projectDir  = os.path.abspath(args.project_dir[0])
