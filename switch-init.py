@@ -55,6 +55,8 @@ if __name__ == '__main__':
       'org.kde.kactivitymanagerd',
       '/ActivityManager',
       'org.kde.ActivityManager.CurrentActivity']).rstrip('\r\n')
+    from kde import KdeSnippet
+    open(os.path.join(switchProjectPath, 'in.sh'), 'a').write(str(KdeSnippet(currentActivity)))
 
   #include add interactively defined aliases
   if args.interactive :

@@ -1,0 +1,4 @@
+if [[ \$DESKTOP_SESSION == 'kde-plasma' ]]
+then
+  qdbus org.kde.kactivitymanagerd /ActivityManager org.kde.ActivityManager.SetCurrentActivity $activity > /dev/null
+fi
