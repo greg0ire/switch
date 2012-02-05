@@ -20,7 +20,7 @@ if __name__ == '__main__':
     help="allows the addition of aliases in an interactive fashion")
 
   if os.environ['DESKTOP_SESSION'] == 'kde-plasma':
-    parser.add_argument('-k --kde-activities', action='store_true', dest='kde-activities',
+    parser.add_argument('-k --kde-activities', action='store_true', dest='kdeActivities',
       help="whether to associate this project with the current KDE activity")
 
 
@@ -46,6 +46,15 @@ if __name__ == '__main__':
     for filename in ('in', 'out'):
       tpl = ProjectTypeFactory.getInstance(args.type[0], filename, projectDir)
       open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
+
+  # include the kde activities snippet
+  if args.kdeActivities:
+    from subprocess import check_output
+    currentActivity = check_output([
+      'qdbus',
+      'org.kde.kactivitymanagerd',
+      '/ActivityManager',
+      'org.kde.ActivityManager.CurrentActivity'])
 
   #include add interactively defined aliases
   if args.interactive :
