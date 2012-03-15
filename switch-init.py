@@ -48,7 +48,7 @@ if __name__ == '__main__':
       open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
 
   # include the kde activities snippet
-  if args.kdeActivities:
+  if os.environ['DESKTOP_SESSION'] == 'kde-plasma' and args.kdeActivities:
     from subprocess import check_output
     currentActivity = check_output([
       'qdbus',
