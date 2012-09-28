@@ -44,6 +44,12 @@ function switch()
   ;;
   esac
 }
+
+function ackhistory()
+{
+  ack $1 ~/.switch/*/history ~/.bash_history
+}
+
 #restore current project on startup
 if [[ -f ~/.switch/proj.save && `pwd` == "$HOME" ]]
 then
