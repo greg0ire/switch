@@ -53,8 +53,8 @@ if __name__ == '__main__':
     currentActivity = check_output([
       'qdbus',
       'org.kde.kactivitymanagerd',
-      '/ActivityManager',
-      'org.kde.ActivityManager.CurrentActivity']).rstrip('\r\n')
+      '/ActivityManager/Activities',
+      'org.kde.ActivityManager.Activities.CurrentActivity']).rstrip('\r\n')
     from kde import KdeSnippet
     open(os.path.join(switchProjectPath, 'in.sh'), 'a').write(str(KdeSnippet(currentActivity)))
 
