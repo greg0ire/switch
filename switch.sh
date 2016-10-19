@@ -4,7 +4,7 @@ function switch()
   local switchHome=$HOME/.switch
   local switchSave=$switchHome/proj.save
   local switchHistory=$switchHome/switch_history
-  case $# in 
+  case $# in
   0 )
     if [[ -f $switchHome/proj.save  ]]
     then
@@ -21,7 +21,7 @@ function switch()
     # Trim trailing slashes
     local projectName=`echo "$1" | sed -e "s/\/*$//" `
 
-    if [[ -f ~/.switch/proj.save  ]]  
+    if [[ -f ~/.switch/proj.save  ]]
     then
       echo "Deselecting current project"
       source $switchHome/`cat ~/.switch/proj.save`/out.sh
