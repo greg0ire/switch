@@ -19,7 +19,7 @@ if __name__ == '__main__':
   parser.add_argument('-i, --interactive', action='store_true', dest='interactive',
     help="allows the addition of aliases in an interactive fashion")
 
-  if os.environ['DESKTOP_SESSION'] == 'kde-plasma':
+  if 'DESKTOP_SESSION' in os.environ and os.environ['DESKTOP_SESSION'] == 'kde-plasma':
     parser.add_argument('-k --kde-activities', action='store_true', dest='kdeActivities',
       help="whether to associate this project with the current KDE activity")
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
       open(os.path.join(switchProjectPath, filename + '.sh'), 'a').write(str(tpl))
 
   # include the kde activities snippet
-  if os.environ['DESKTOP_SESSION'] == 'kde-plasma' and args.kdeActivities:
+  if 'DESKTOP_SESSION' in os.environ and os.environ['DESKTOP_SESSION'] == 'kde-plasma' and args.kdeActivities:
     from subprocess import check_output
     currentActivity = check_output([
       'qdbus',
