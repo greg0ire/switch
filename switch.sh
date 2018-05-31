@@ -4,6 +4,13 @@ function switch()
   local switchHome=$HOME/.switch
   local switchSave=$switchHome/proj.save
   local switchHistory=$switchHome/switch_history
+  if [[ ! -d "$switchHome" ]]
+  then
+    local switchSource
+    switchSource="$(/bin/readlink -f "${0%/*}")"
+    echo "No switch projects yet, use $switchSource/switch-init.py first"
+    return
+  fi
   case $# in
   0 )
     if [[ -f $switchHome/proj.save  ]]
