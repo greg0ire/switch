@@ -4,58 +4,65 @@ function switch()
   local switchHome=$HOME/.switch
   local switchSave=$switchHome/proj.save
   local switchHistory=$switchHome/switch_history
+  if [[ ! -d "$switchHome" ]]
+  then
+    local switchSource
+    switchSource="$(/bin/readlink -f "${0%/*}")"
+    echo "No switch projects yet, use $switchSource/switch-init.py first"
+    return
+  fi
   case $# in
   0 )
     if [[ -f $switchHome/proj.save  ]]
     then
       echo "Deselecting current project"
-      source $switchHome/`cat ~/.switch/proj.save`/out.sh
-      rm $switchSave
-      date +%s >> $switchHistory
-      cd
+      source $switchHome/$(cat ~/.switch/proj.save)/out.sh
+      rm "$switchSave"
+      date +%s >> "$switchHistory"
+      cd || exit
     else
       echo "Current project not found">&2
     fi
   ;;
   1 )
     # Trim trailing slashes
-    local projectName=`echo "$1" | sed -e "s/\/*$//" `
+    local projectName
+    projectName=${1//\//}
 
     if [[ -f ~/.switch/proj.save  ]]
     then
       echo "Deselecting current project"
-      source $switchHome/`cat ~/.switch/proj.save`/out.sh
-      rm $switchSave
+      source "$switchHome/$(cat ~/.switch/proj.save)/out.sh"
+      rm "$switchSave"
     fi
     if [[ -d $switchHome/$projectName  ]]
     then
       echo "Switching to project \"$projectName\""
-      source $switchHome/$projectName/in.sh
-      echo "$projectName" > $switchSave
-      echo `date +%s` $projectName >> $switchHistory
+      source "$switchHome/$projectName/in.sh"
+      echo "$projectName" > "$switchSave"
+      echo "$(date +%s ) $projectName" >> "$switchHistory"
     else
-      echo "\"$1\" is not a switch project. Available projects: `ls -x ~/.switch`">&2
-      date +%s >> $switchHistory
+      echo "\"$1\" is not a switch project. Available projects: $(ls -x ~/.switch)">&2
+      date +%s >> "$switchHistory"
     fi
   ;;
   * )
     echo "Too many arguments">&2
-    echo $usage
+    echo "$usage"
   ;;
   esac
 }
 
 function searchhistory()
 {
-  grep --no-filename $1 ~/.switch/*/history ~/.bash_history
+  grep --no-filename "$1" ~/.switch/*/history ~/.bash_history
 }
 
 #restore current project on startup
 if [ -f ~/.switch/proj.save ]
 then
-  currentProject=`cat ~/.switch/proj.save`
+  currentProject=$(cat ~/.switch/proj.save)
      rm ~/.switch/proj.save #avoid warnings about non existent aliases and functions
-     switch $currentProject
+     switch "$currentProject"
   unset currentProject
 fi
-
