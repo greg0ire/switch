@@ -15,7 +15,9 @@
 ## switch-init
 **switch-init** project [ --type=symfony ]
 
-This will create the shell snippets
+This will create the shell snippets, and you should run it at least once, from
+the directory of your first project, before invoking the `switch` function. You
+can get more help about this command with `switch-init.py --help`
 
 ## switch
 **switch** [project]
